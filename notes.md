@@ -58,3 +58,20 @@ end
 {:error, _reason} -> "That file does not exist!"
 ```
 - *Without the **_** before **reason**, an error will be thrown when trying to match this case, such as 'unused variable'. To escape this, throw an underscore before the variable name to signify that it will not be used but is required for matching*
+
+**pipe operator** - takes the result of the method on the left side and passes it as an argument to the method on the right side. Can be chained.
+```
+def create_hand(hand_size) do
+    deck = Cards.create_deck
+    deck = Cards.shuffle(deck)
+    hand = Cards.deal(deck, hand_size)
+end
+
+BECOMES
+
+def create_hand(hand_size) do
+    Cards.create_deck
+    |> Cards.shuffle
+    |> Cards.deal(hand_size)
+end
+```

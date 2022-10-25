@@ -50,4 +50,12 @@ defmodule Cards do
     end
   end
 
+  # all in one method, creates shuffles and deals deck into a hand
+  # using pipe operator to pass returns as args into following methods
+  def create_hand(hand_size) do
+    Cards.create_deck
+    |> Cards.shuffle
+    |> Cards.deal(hand_size)
+  end
+
 end
