@@ -11,13 +11,21 @@ using **mix**, auto compiles and makes project avail within iex shell (must be i
 
 recompile code after making changes
 
+```> mix deps.get```
+
+install dependencies from *mix.exs* file
+
+```> mix docs```
+
+compile code documentation into html file found in */doc/index.html*
+
 
 ## Built in Methods from Standard Library
 [**Enum**](https://hexdocs.pm/elixir/Enum.html): working with lists of data
 
 [**List**](https://hexdocs.pm/elixir/List.html): working with linked lists
 
-## Key Notes
+# Key Notes
 - NO INSTANCE VARIABLES / NO CLASSES (vs OOP)
     - All data within an application are data structures made out of primitive variables that represent the absolute bare essence of the data that is being worked with
     - Whenever taking action on a piece of data, the data is passed into a method which processes it and then returns some result
@@ -27,8 +35,17 @@ recompile code after making changes
 - Elixir code gets transpiled into **Erlang**, which then gets compiled and executed on the **BEAM** (B/B... Erlang Abstract Machine, VM in which all Erlang code is executed)
 - **Avoid IF statements**, instead focus on case matching
 
+# Documentation
+**Documentation** is key to understanding your project (*ex_doc* in */deps*), try to make it light and concise.
+- *Module Documentation* - overview/summary of entire module (*@moduledoc*)
+- *Function Documentation* - document the purpose of individual functions (*@doc*)
+- Using **ex_doc** creates a handy html file (in */doc*) that provides a clean navigatable version of the project documentation
 
-## Glossary
+```> mix docs```
+
+From root dir: compile code documentation into html file found in */doc/index.html*
+
+# Glossary
 **arity** - number of args a function accepts
 ```
 shuffle/1 -> Cards.shuffle() takes one (1) arg
