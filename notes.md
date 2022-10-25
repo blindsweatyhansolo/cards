@@ -1,13 +1,13 @@
 # MIX AND IEX
-```> iex ```
+```> iex```
 
 interactive elixir shell, run in command line
 
-```> iex -S mix ```
+```> iex -S mix```
 
 using **mix**, auto compiles and makes project avail within iex shell (must be in working directory)
 
-```> recompile ``` OR ```> r <module name> ```
+```> recompile``` OR ```> r <module name>```
 
 recompile code after making changes
 
@@ -25,6 +25,7 @@ recompile code after making changes
 - **DOUBLE QUOTES** is the convention in elixir code
 - methods with a **?** return a **Boolean** value
 - Elixir code gets transpiled into **Erlang**, which then gets compiled and executed on the **BEAM** (B/B... Erlang Abstract Machine, VM in which all Erlang code is executed)
+- **Avoid IF statements**, instead focus on case matching
 
 
 ## Glossary
@@ -43,10 +44,17 @@ defmodule Cards
 for suit <- suits, value <- values do
     "#{value} of #{suit}"
 end
-
-For every element in suits AND every element in values, execute code in do block. Whatever is returned gets put into a new list. In this case, a list of each value with each suit is returned as its own string, ex: "Ace of Spades".
 ```
+- *For every element in suits AND every element in values, execute code in do block. Whatever is returned gets put into a new list. In this case, a list of each value with each suit is returned as its own string, ex: "Ace of Spades".*
 
 **tuple** - like a list where each index has a special meaning, surrounded by *curly brackets { }*
 
 **pattern matching** - Elixir's replacement for variable assignment, uses the *=* symbol. 
+
+**atoms** - such as *:ok* or *:error*, strings that are for codifying messages that the developers see
+
+**_ (underscore)** - used in front of variables to ignore them for pattern matching, when their definition is still needed in a method (error handling)
+```
+{:error, _reason} -> "That file does not exist!"
+```
+- *Without the **_** before **reason**, an error will be thrown when trying to match this case, such as 'unused variable'. To escape this, throw an underscore before the variable name to signify that it will not be used but is required for matching*

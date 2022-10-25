@@ -31,10 +31,23 @@ defmodule Cards do
 
   # save a deck to the fs, pass in deck and filename
   def save(deck, filename) do
-    # (encode) turn the deck arg into an object that can be saved to the file system
+    # (encode) turn the deck arg into an object that can be saved to the file
+    # system as a tuple of binary
     binary = :erlang.term_to_binary(deck)
     # pass new encoded deck to write method, with filename to be saved as
     File.write(filename, binary)
+  end
+
+  # load file off disk, uses Erlang to translate into something readable
+  def load(filename) do
+    # ERROR HANDLING: if status from File.read = :ok execute reverse action from save
+    # method, will change saved deck to a readable list of strings, if :error
+    # display error message (catches all non matching args)
+    case File.read(filename) do
+      # PATTERN MATCHING: arg1 comparison (:ok/:error), arg2 assignment (binary, _reason)
+      {:ok, binary} -> :erlang.binary_to_term binary
+      {:error, _reason} -> "That file does not exist!"
+    end
   end
 
 end
