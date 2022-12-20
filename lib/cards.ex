@@ -25,6 +25,13 @@ defmodule Cards do
 
   @doc """
     Uses the `Enum.member?/2` method to check if a specific card is in the deck. Returns a boolean.
+
+  ## Examples
+
+        iex(2)> deck = Cards.create_deck
+        iex(3)> Cards.contains?(deck, "Three of Diamonds")
+        true
+
   """
   def contains?(deck, card) do
     # first arg = enumerable, second arg = what to find
@@ -62,7 +69,7 @@ defmodule Cards do
   """
   def load(filename) do
     case File.read(filename) do
-      {:ok, binary} -> :erlang.binary_to_term binary
+      {:ok, binary} -> :erlang.binary_to_term(binary)
       {:error, _reason} -> "That file does not exist!"
     end
   end
@@ -71,9 +78,8 @@ defmodule Cards do
     All in one method: creates deck, shuffles it, and deals deck into a hand (`hand_size` argument indicates how many cards should be in the hand).
   """
   def create_hand(hand_size) do
-    Cards.create_deck
-    |> Cards.shuffle
+    Cards.create_deck()
+    |> Cards.shuffle()
     |> Cards.deal(hand_size)
   end
-
 end
